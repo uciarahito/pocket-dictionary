@@ -5,7 +5,13 @@ const mongoose = require('mongoose')
 const jwt = require('jsonwebtoken')
 const cors = require('cors')
 const index = require('./routes/index');
+var path = require('path');
 require('dotenv').config()
+
+// view engine setup
+app.set('views', 'views');
+app.set('view engine', 'ejs');
+app.use(express.static(path.join(__dirname, 'public')));
 
 app.use(cors())
 mongoose.connect('mongodb://localhost/pocket-dictionary');
@@ -18,7 +24,6 @@ app.use(bodyParser.urlencoded({
     extended: false
 }));
 app.use(bodyParser.json());
-
 app.use('/', index);
 
 // NOTE: run
