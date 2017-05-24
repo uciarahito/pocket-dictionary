@@ -1,3 +1,4 @@
+'use strict'
 const User = require('../models/user')
 const bCrypt = require('bcrypt');
 let methods = {}
