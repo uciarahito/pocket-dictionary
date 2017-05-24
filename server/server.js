@@ -5,6 +5,7 @@ const mongoose = require('mongoose')
 const jwt = require('jsonwebtoken')
 const cors = require('cors')
 const index = require('./routes/index');
+require('dotenv').config()
 
 app.use(cors())
 mongoose.connect('mongodb://localhost/pocket-dictionary');
