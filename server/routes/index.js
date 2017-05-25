@@ -21,8 +21,8 @@ router.get('/dashboard', function(req, res) {
   res.render('dashboard', {error: null})
 });
 router.post('/translate', function(req, res) {
-  translate.translate(req.body.speech, { to: 'en' }, (err, result) => {
-    res.send(result.text[0]);
+  translate.translate(req.body.speech, { to: 'ru' }, (err, result) => {
+    res.send(result);
   });
 });
 
