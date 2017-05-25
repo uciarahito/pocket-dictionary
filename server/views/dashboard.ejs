@@ -21,11 +21,11 @@
                   </div>
                   <div class="row">
                     <div class="col s12">
-                      <select name="language">
-                        <option value="" disabled selected>language</option>
-                        <option value="id">indonesia</option>
-                        <option value="en">english</option>
-                        <option value="ru">russian</option>
+                      <select name="languageOption">
+                        <option value="" disabled selected>choose language</option>
+                        <% getLanguage.forEach(function(listLanguage) { %>
+                          <option value = '<%=listLanguage.alpha2%>'> <%= listLanguage.English %></option>
+                        <% }); %>
                       </select>
                     </div>
                     <div class="col s12">
