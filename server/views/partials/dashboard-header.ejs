@@ -1,0 +1,24 @@
+<nav class="nav-extended greens">
+ <div class="nav-wrapper ">
+   <a href="#" class="brand-logo absolute-center">Pocket Dictionary</a>
+   <a href="#" data-activates="mobile-demo" class="button-collapse"><i class="material-icons">menu</i></a>
+
+   <ul class="right hide-on-med-and-down" style="margin-right: 15px;">
+     <li>
+       <div class="chip">
+         <img src="/images/man.png" alt="Contact Person">
+         <%- currentUser.name %>
+       </div>
+     </li>
+     <li><li><a href="/logout">Logout</a></li></li>
+   </ul>
+   <ul class="side-nav" id="mobile-demo">
+     <li><a href="/user/dashboard/user">My Profile</a></li>
+     <li><a href="/user/logout">Logout</a></li>
+   </ul>
+ </div>
+ <div class="nav-content container" style="display: none">
+   <ul class="tabs tabs-transparent">
+   </ul>
+ </div>
+</nav>
