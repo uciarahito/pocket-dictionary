@@ -3,7 +3,12 @@ const User = require('../models/user')
 const bCrypt = require('bcrypt');
 let methods = {}
 const saltRounds = 10;
-const jwt = require('jsonwebtoken')
+const jwt = require('jsonwebtoken');
+require('dotenv').config()
+
+methods.signupPage = (req, res) => {
+  res.render('register', {success: null})
+}
 
 methods.signup = (req, res) => {
   let pwd = req.body.password
@@ -18,14 +23,20 @@ methods.signup = (req, res) => {
   .then(response => {
     console.log(response);
     console.log('Signup data user success');
-    res.json(response)
+    res.redirect('/login')
   })
   .catch(err => {
-      res.send(err.message);
+      res.send(err.message); // Ini perlu render custom paga ga?
   })
 } //signup
 
+methods.signinPage = (req, res) => {
+  console.log('tess');
+  res.render('login', {error: null})
+}
+
 methods.signin = (req, res) => {
+
   User.findOne({
     username: req.body.username
   })
@@ -41,6 +52,7 @@ methods.signin = (req, res) => {
         let token = jwt.sign(data, process.env.SECRET_KEY, {
             expiresIn: '1h'
         })
+        console.log('tess');
         console.log('token: ');
         res.json({
             message: 'Login is Successful',

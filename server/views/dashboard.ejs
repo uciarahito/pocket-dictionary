@@ -8,14 +8,30 @@
         <div class="center-align">
           <button onclick="startConverting()" class="btn-floating btn-large waves-effect waves-light red"><i class="fa fa-microphone"></i></button>
         </div>
-       <form class="col s12" action="/result" method="post">
+       <form class="col s12" action="/translate" method="post">
          <div class="row">
            <div class="input-field col s12">
              <textarea  id="result" class="materialize-textarea" placeholder="Please speak" name="speech"></textarea>
              <!-- <label for="result">Textarea</label> -->
            </div>
          </div>
-         <button type="submit" name="button" class="waves-effect waves-light btn">translate</button>
+         <div class="row">
+           <button type="submit" name="button" class="waves-effect waves-light btn">translate</button>
+         </div>
+         <!-- Dropdown Trigger -->
+          <a class='dropdown-button btn' href='#' data-activates='dropdown1'>Drop Me!</a>
+
+          <!-- Dropdown Structure -->
+          <ul id='dropdown1' class='dropdown-content'>
+            <li><a href="#!">one</a></li>
+            <li><a href="#!">two</a></li>
+            <li class="divider"></li>
+            <li><a href="#!">three</a></li>
+            <li><a href="#!"><i class="material-icons">view_module</i>four</a></li>
+            <li><a href="#!"><i class="material-icons">cloud</i>five</a></li>
+          </ul>
+        </div>
+
        </form>
      </div>
       <!-- <button type="submit" class="log-btn" >Submit</button> -->
