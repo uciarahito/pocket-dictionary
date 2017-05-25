@@ -20,6 +20,7 @@ router.get('/logout', userController.logout)
 router.get('/dashboard', userController.auth , userController.dashboard);
 router.post('/dashboard', translateController.translate);
 
+
 // 'login', {error: null}
 
 
