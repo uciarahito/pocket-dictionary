@@ -30,6 +30,9 @@
       <% if(success !== null) {%>
         <p class="text-center alert-success-cstm"><%= success %></p>
       <% } %>
+      <% if(error !== null) {%>
+        <p class="text-center alert-danger-cstm"><%= error %></p>
+      <% } %>
    </div>
   <script src='http://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js'></script>
   <script src="javascripts/index.js"></script>
