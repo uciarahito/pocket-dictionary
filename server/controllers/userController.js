@@ -83,7 +83,7 @@ methods.signin = (req, res) => {
 } //signin
 
 methods.auth = (req, res, next) => {
-  if(userToken == null || userToken == Error){
+  if(userToken == null){
     res.redirect('/login')
   } else {
     req.headers.token = userToken
@@ -100,7 +100,7 @@ methods.dashboard = (req, res) => {
     let decode = helpers.decode_token
     let user = decode(req.headers.token)
     // console.log(user);
-    res.render('dashboard', {currentUser: user, result: null, getLanguage: objLanguage})
+    res.render('dashboard', {currentUser: user, result: null, error: null, getLanguage: objLanguage})
   }
 
 methods.logout = (req, res) => {
