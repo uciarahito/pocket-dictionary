@@ -6,6 +6,7 @@ const userController = require('./userController')
 var fs = require('fs');
 var objLanguage = JSON.parse(fs.readFileSync('./public/datas/language-codes.json', 'utf8'));
 const Translate = require('../models/translate')
+const imageUrl = require('../models/imageUrl');
 
 var methods = {};
 
@@ -48,13 +49,22 @@ methods.create = (req, res) => {
   // console.log(user_id);
   // req.body.user_id = user_id
   // console.log(req.body);
-  Translate.create(req.body)
-  .then(translate => {
-    res.send(translate)
+  var obj = {
+    text:req.body.to_text,
+    name: req.body.name
+  }
+  imageUrl(obj, (err, result) => {
+    if (err) res.send(err)
+    req.body.image_url = result;
+    Translate.create(req.body)
+    .then(translate => {
+      res.send(translate)
+    })
+    .catch(err => {
+      res.send(err)
+    })
   })
-  .catch(err => {
-    res.send(err)
-  })
+
 }
 
 methods.getByUserId = (req, res) => {
@@ -80,5 +90,16 @@ methods.deleteById = (req, res) => {
     res.send(err)
   })
 }
+
+// methods.getImageUrl = (req, res) => {
+//   var obj = {
+//     text:req.body.text,
+//     name:req.body.name
+//   }
+//   imageUrl(obj, (err, result) => {
+//     if (err) res.send(err)
+//     res.send(result)
+//   })
+// }
 
 module.exports = methods;

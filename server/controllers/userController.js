@@ -69,8 +69,8 @@ methods.signin = (req, res) => {
           expiresIn: '1h'
         })
         userToken = token
-        //res.redirect('/dashboard')
-        res.send({token, data})
+        res.redirect('/dashboard')
+        //res.send({token, data})
       } else {
         res.json({
           message: 'Your password is not match'

@@ -11,7 +11,8 @@ let translateSchema = new Schema({
     created_at: {
       type: Date,
       default: Date.now
-    }
+    },
+    image_url: String
 }) // translateSchema
 
 let Translate = mongoose.model('Translate', translateSchema)
