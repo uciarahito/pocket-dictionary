@@ -83,7 +83,7 @@ methods.signin = (req, res) => {
 } //signin
 
 methods.auth = (req, res, next) => {
-  if(userToken == null){
+  if(userToken == null || userToken == Error){
     res.redirect('/login')
   } else {
     req.headers.token = userToken
