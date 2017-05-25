@@ -11,20 +11,14 @@ router.post('/register', userController.signup);
 router.get('/login', userController.signinPage);
 router.post('/login', userController.signin);
 router.post('/api/translate', translateController.translate)
+router.get('/logout', userController.logout)
 
 
 
 
 
-
-router.get('/dashboard', function(req, res) {
-  res.render('dashboard', {error: null})
-});
-router.post('/translate', function(req, res) {
-  translate.translate(req.body.speech, { to: 'en' }, (err, result) => {
-    res.send(result.text[0]);
-  });
-});
+router.get('/dashboard', userController.auth , userController.dashboard);
+router.post('/dashboard', translateController.translate);
 
 // 'login', {error: null}
 

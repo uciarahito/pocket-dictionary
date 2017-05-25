@@ -1,3 +1,4 @@
+'use strict'
 let methods = {}
 const jwt = require('jsonwebtoken')
 
