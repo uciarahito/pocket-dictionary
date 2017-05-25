@@ -12,7 +12,9 @@ methods.translate = (req, res) => {
   req.headers.token = userController.getToken()
   let decode = helpers.decode_token
   let user = decode(req.headers.token)
-  translate.translate(req.body.speech, { to: 'en' }, (err, result) => {
+  let toLanguage = req.body.languageOption
+  console.log(toLanguage);
+  translate.translate(req.body.speech, { to: toLanguage }, (err, result) => {
     if(err){
       console.log(err)
       res.render('dashboard', {currentUser: user, result: `sorry i didn't catch it`, getLanguage: objLanguage})
