@@ -4,7 +4,7 @@ function checkCompatibility() {
       }
     }
     checkCompatibility()
-    var voiceOptions = document.getElementById('voiceOptions')
+    var voiceOptions = 'Google UK English Male'
     var myText = document.getElementById('myText')
     var voiceMap = []
     function loadVoices() {
@@ -14,7 +14,7 @@ function checkCompatibility() {
         var option = document.createElement('option')
         option.value = voice.name
         option.innerHTML = voice.name
-        voiceOptions.appendChild(option)
+        // voiceOptions.appendChild(option)
         voiceMap[voice.name] = voice
       }
     }
@@ -22,8 +22,10 @@ function checkCompatibility() {
       loadVoices()
     }
     function speak() {
+      var myText = document.getElementById('myText')
       var msg = new SpeechSynthesisUtterance()
-      msg.voice = voiceMap[voiceOptions.value]
+      msg.voice = voiceMap[voiceOptions]
       msg.text = myText.value
+      console.log(myText.value);
       window.speechSynthesis.speak(msg)
     }
