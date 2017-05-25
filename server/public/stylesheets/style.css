@@ -8,6 +8,11 @@ a {
   color: #00B7FF;
 }
 
+.textarea-custom {
+  height: 100%;
+  border: none;
+}
+
 .alert-danger-cstm {
   color: #a94442;
   background-color: #f2dede;
