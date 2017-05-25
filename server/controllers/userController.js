@@ -101,7 +101,7 @@ methods.dashboard = (req, res) => {
     let decode = helpers.decode_token
     let user = decode(req.headers.token)
     // console.log(user);
-    res.render('dashboard', {currentUser: user, result: null, getLanguage: objLanguage})
+    res.render('dashboard', {currentUser: user, result: null, error: null, getLanguage: objLanguage})
   }
 
 methods.logout = (req, res) => {

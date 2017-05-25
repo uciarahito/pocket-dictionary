@@ -29,12 +29,22 @@ a {
   color: #fff;
 }
 
+.dark-grey {
+  background-color: #546e7a;
+  color: #fff;
+}
+
 .gray {
   background-color: #eee;
 }
 
 .absolute-center {
   left: 43%;
+}
+
+.absolute-bottom {
+  position: absolute;
+  bottom: 20px;
 }
 
 @import url(http://fonts.googleapis.com/css?family=Vibur);
