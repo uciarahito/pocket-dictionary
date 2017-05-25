@@ -17,6 +17,7 @@ router.post('/dashboard', translateController.translate);
 router.post('/translate', translateController.create);
 router.get('/api/translate/:user_id', translateController.getByUserId);
 router.delete('/api/translate/:id', translateController.deleteById)
+//router.post('/image', translateController.getImageUrl);
 
 
 // 'login', {error: null}
