@@ -1,11 +1,59 @@
 body {
   padding: 0;
-  font-family: 'Open Sans', sans-serif;
+  font-family: 'Open Sans', sans-serif !important;
   background: rgb(204, 204, 204);
 }
 
 a {
   color: #00B7FF;
+}
+
+.custom-card-panel {
+  padding: 0 20px;
+}
+
+.relative {
+  position: relative
+}
+
+.custom-fixed-button {
+  position: absolute;
+  top: 5px;
+  right: 10px;
+}
+
+.custom-btn-floating, .custom-btn-floating:hover {
+  background-color: transparent;
+  box-shadow: none;
+  width: 30px !important;
+}
+
+.fixed-action-btn.horizontal.custom-fixed-button ul {
+  right: 35px;
+  top: 45%;
+}
+
+.text-on-image {
+  position: absolute;
+  color: white !important;
+  padding: 10%;
+  bottom: 0;
+  top: 0;
+  left: 0;
+  right: 0;
+  background-color: rgba(0, 0, 0, 0.27);
+}
+.brand-logo, .translated-card {
+  font-family: 'Open Sans Condensed', sans-serif;
+  font-weight: 700;
+}
+
+.head-title {
+  font-family: 'Open Sans Condensed', sans-serif;
+}
+.textarea-custom {
+  height: 100%;
+  border: none;
 }
 
 .alert-danger-cstm {
@@ -45,6 +93,13 @@ a {
 .absolute-bottom {
   position: absolute;
   bottom: 20px;
+  margin-right: 20px;
+  right: 0;
+  left: 20px;
+}
+
+#myText {
+  min-height: 170px;
 }
 
 @import url(http://fonts.googleapis.com/css?family=Vibur);
@@ -52,7 +107,7 @@ a {
   box-sizing: border-box;
   -moz-box-sizing: border-box;
   -webkit-box-sizing: border-box;
-  font-family: arial;
+  font-family: 'Open Sans', sans-serif;
 }
 
 .image {
