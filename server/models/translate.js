@@ -7,7 +7,10 @@ let translateSchema = new Schema({
     from_text: String,
     to_lang: String,
     to_text: String,
-    user_id: Schema.Types.ObjectId,
+    user_id: {
+      type: Schema.Types.ObjectId,
+      ref: 'User'
+    },
     created_at: {
       type: Date,
       default: Date.now

@@ -6,18 +6,24 @@ const userController = require('./userController')
 var fs = require('fs');
 var objLanguage = JSON.parse(fs.readFileSync('./public/datas/language-codes.json', 'utf8'));
 const Translate = require('../models/translate')
+var translateObj = {}
 
 var methods = {};
 
 methods.translate = (req, res) => {
-  req.headers.token = userController.getToken()
   let decode = helpers.decode_token
+  console.log('ini decode ', decode);
   let user = decode(req.headers.token)
+  console.log('ini user ', user);
+  // console.log(user);
+  // res.render('dashboard', {currentUser: user, result: null, error: null, getLanguage: objLanguage})
+  var user_id = user._id
+  console.log('ini user id kedua ', user_id);
   let toLanguage = req.body.languageOption
   translate.translate(req.body.speech, { to: toLanguage }, (err, result) => {
     if(err){
       console.log(err)
-      res.render('dashboard', {currentUser: user, result: null, error: `Sorry i didnt catch that`, getLanguage: objLanguage})
+      res.render('dashboard', {currentUser: user, result: null, error: `Sorry i didnt catch that`, getLanguage: objLanguage, getLibrary: translates})
     }
     else {
       let translateResult = result
@@ -32,25 +38,35 @@ methods.translate = (req, res) => {
           result.toLang = objLanguage[i].English
         }
       }
-      console.log(result);
+      result.inputLang = req.body.speech
+      translateObj.from_lang = result.fromLang
+      translateObj.to_lang = result.toLang
+      translateObj.from_text = result.inputLang
+      translateObj.to_text= result.text[0]
+      console.log(translateObj);
+      Translate.find({user_id: user_id})
+      .then(translates => {
+        console.log('ini list kedua',translates);
+        res.render('dashboard', {currentUser: user, result: translateResult, error: null, getLanguage: objLanguage, getLibrary: translates})
+      })
+      .catch(err => {
+        console.log(err);
+        res.send(err)
+      })
       // console.log(objLanguage);
-      res.render('dashboard', {currentUser: user, result: translateResult, error: null, getLanguage: objLanguage})
     }
   });
 }
 
 methods.create = (req, res) => {
-  // var token = userController.getToken()
-  // console.log(token);
-  // var decoded = helpers.decode_token(token)
-  // console.log(decoded);
-  // var user_id = decoded._id
-  // console.log(user_id);
-  // req.body.user_id = user_id
-  // console.log(req.body);
-  Translate.create(req.body)
+  var token = userController.getToken()
+  var decoded = helpers.decode_token(token)
+  var user_id = decoded._id
+  translateObj.user_id = user_id
+  Translate.create(translateObj)
   .then(translate => {
-    res.send(translate)
+    // res.send(translate)
+    res.redirect('/dashboard')
   })
   .catch(err => {
     res.send(err)
@@ -58,10 +74,16 @@ methods.create = (req, res) => {
 }
 
 methods.getByUserId = (req, res) => {
-  Translate.find({user_id: req.params.user_id})
+  let decode = helpers.decode_token
+  let user = decode(req.headers.token)
+  // console.log(user);
+
+  var user_id = user._id
+  console.log('ini user id pertama ', user_id);
+  Translate.find({user_id: user_id})
   .then(translates => {
-    console.log(translates);
-    res.send(translates)
+    console.log('ini list pertama',translates);
+    res.render('dashboard', {currentUser: user, result: null, error: null, getLanguage: objLanguage, getLibrary: translates})
   })
   .catch(err => {
     res.send(err)
@@ -73,7 +95,8 @@ methods.deleteById = (req, res) => {
   .then(translate => {
     translate.remove()
     .then(result => {
-      res.send(result)
+      // res.send(result)
+      res.redirect('/dashboard')
     })
   })
   .catch(err => {
