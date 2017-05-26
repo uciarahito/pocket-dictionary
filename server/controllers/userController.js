@@ -70,8 +70,7 @@ methods.signin = (req, res) => {
         })
         userToken = token
         res.redirect('/dashboard')
-        // res.send({token, data})
-
+        //res.send({token, data})
       } else {
         res.json({
           message: 'Your password is not match'

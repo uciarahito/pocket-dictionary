@@ -71,6 +71,7 @@ methods.create = (req, res) => {
   .catch(err => {
     res.send(err)
   })
+
 }
 
 methods.getByUserId = (req, res) => {
@@ -103,5 +104,16 @@ methods.deleteById = (req, res) => {
     res.send(err)
   })
 }
+
+// methods.getImageUrl = (req, res) => {
+//   var obj = {
+//     text:req.body.text,
+//     name:req.body.name
+//   }
+//   imageUrl(obj, (err, result) => {
+//     if (err) res.send(err)
+//     res.send(result)
+//   })
+// }
 
 module.exports = methods;
