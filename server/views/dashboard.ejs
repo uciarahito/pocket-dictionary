@@ -43,13 +43,12 @@
                     <h5 ><textarea id="myText" class="textarea-custom"><%= result.text[0] %></textarea></h5>
                     <div id="voiceOptions"></div>
                     <div class="absolute-bottom">
+                      <a href="/save" class="button white-text right"><i class="fa fa-floppy-o" aria-hidden="true"></i></a>
                       <div class="button" onclick="speak();"><i class="fa fa-microphone"></i></div>
                       <small><%= result.inputLang %></small><br>
                       <small><i>Translated from <small><%= result.fromLang %></small> to <small><%= result.toLang %></small> </i></small>
                     </div>
-                    <form action="/save" method="post">
-                      <button type="submit">save</button>
-                    </form>
+
                 <% } %>
                 <% if(error !== null) {%>
                   <h5><%= error %></h5>
@@ -107,7 +106,13 @@
               </div>
               </div>
             <% } %>
-          <% }%>
+          <% } else {%>
+            <br>
+            <div class="image">
+              <img src="/images/agenda.png" alt="" class="logo"/>
+              <h6 class="center-align">No Data</h6>
+            </div>
+          <% } %>
         </div>
       </div>
      </div>
