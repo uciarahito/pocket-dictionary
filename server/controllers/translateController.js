@@ -127,7 +127,7 @@ methods.share = (req, res) => {
   Translate.findById(id)
   .then(translate => {
     console.log(translate);
-    res.render('share', {currentUser: user, getLibrary: translate})
+    res.render('share', {currentUser: user, getLibrary: translate, success: null})
   })
   .catch(err => {console.log(err);})
 }
