@@ -1,3 +1,4 @@
+'use strict'
 const express = require('express')
 const router = express.Router()
 const userController = require('../controllers/userController')
@@ -18,6 +19,7 @@ router.get('/save', translateController.create);
 router.get('/api/translate/:user_id', translateController.getByUserId);
 router.get('/delete/:id', translateController.deleteById)
 
+router.get('/share/:id', userController.auth, translateController.share);
 
 // 'login', {error: null}
 

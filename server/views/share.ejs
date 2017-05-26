@@ -1,0 +1,32 @@
+<%- include ./partials/header.ejs %>
+<body>
+  <%- include ./partials/dashboard-header.ejs %>
+  <div class="login-form">
+    <div class="row">
+      <div class="col s12">
+      <div class="card" style="margin: 15px 0 0;">
+        <div class="card-image relative">
+          <img src="https://unsplash.it/300/200/?random">
+          <div class="text-on-image">
+            <p>
+              <small><i><%= getLibrary.from_lang %></i></small><br>
+              <span class="translated-card">
+                <%= getLibrary.from_text %>
+              </span>
+            </p>
+            <p>
+              <small><i><%= getLibrary.to_lang %></i></small><br>
+              <span class="translated-card">
+                <%= getLibrary.to_text %>
+              </span>
+            </p>
+          </div>
+        </div>
+    </div>
+    </div>
+    </div>
+  </div>
+  <script src='http://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js'></script>
+  <script src="javascripts/index.js"></script>
+</body>
+</html>

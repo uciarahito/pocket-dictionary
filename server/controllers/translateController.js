@@ -105,6 +105,19 @@ methods.deleteById = (req, res) => {
   })
 }
 
+methods.share = (req, res) => {
+  let decode = helpers.decode_token
+  let user = decode(req.headers.token)
+
+  let id = req.params.id
+  Translate.findById(id)
+  .then(translate => {
+    console.log(translate);
+    res.render('share', {currentUser: user, getLibrary: translate})
+  })
+  .catch(err => {console.log(err);})
+}
+
 // methods.getImageUrl = (req, res) => {
 //   var obj = {
 //     text:req.body.text,
