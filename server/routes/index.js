@@ -14,7 +14,7 @@ router.post('/api/translate', translateController.translate);
 router.get('/logout', userController.logout);
 router.get('/dashboard', userController.auth , translateController.getByUserId);
 router.post('/dashboard', userController.auth, translateController.translate);
-router.post('/save', translateController.create);
+router.get('/save', translateController.create);
 router.get('/api/translate/:user_id', translateController.getByUserId);
 router.get('/delete/:id', translateController.deleteById)
 
