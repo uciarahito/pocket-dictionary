@@ -1,8 +1,10 @@
+'use strict'
 const express = require('express');
 const router = express.Router();
 const TwitterPic = require('twitter-pic');
 const request = require('request');
 const Translate = require('../models/translate');
+const helpers = require('../helpers/decode_token')
 require('dotenv').config();
 
 
@@ -15,6 +17,10 @@ var t = new TwitterPic({
 
 module.exports = {
   twitImage: (req, res) => {
+    let decode = helpers.decode_token
+    let user = decode(req.headers.token)
+
+    let id = req.params.id
     Translate.findById(req.params.id)
     .populate('user_id')
     .exec((err,result) => {
@@ -24,11 +30,12 @@ module.exports = {
           status: `${result.user_id.name} posted an image...`,
 
           media: request(result.image_url)
-      }, (err, result) => {
+      }, (err, result2) => {
           if (err) {
               res.send(err);
           }
-          res.send(result)
+          res.render('share', {currentUser: user, getLibrary: result, success: 'Your pic has been tweet to our fanpage! Thankyou'})
+          // res.send(result)
       });
     })
   }

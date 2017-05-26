@@ -20,7 +20,7 @@ router.get('/save', translateController.create);
 router.get('/api/translate/:user_id', translateController.getByUserId);
 router.get('/delete/:id', translateController.deleteById)
 router.get('/share/:id', userController.auth, translateController.share);
-router.get('/tweet/:id', twitterController.twitImage)
+router.get('/tweet/:id', userController.auth, twitterController.twitImage)
 
 // 'login', {error: null}
 
