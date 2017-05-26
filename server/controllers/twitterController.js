@@ -2,8 +2,7 @@ const express = require('express');
 const router = express.Router();
 const TwitterPic = require('twitter-pic');
 const request = require('request');
-const helpers = require('../helpers/decode_token')
-const userController = require('./userController')
+const Translate = require('../models/translate');
 require('dotenv').config();
 
 
@@ -16,15 +15,20 @@ var t = new TwitterPic({
 
 module.exports = {
   twitImage: (req, res) => {
-    t.update({
-        status: `User ${req.body.user_id} post an image`,
-        media: request(req.body.image_url)
-    },
-    function (err, result) {
-        if (err) {
-            res.send(err);
-        }
-        res.send(result)
-    });
+    Translate.findById(req.params.id)
+    .populate('user_id')
+    .exec((err,result) => {
+      if (err) res.send(err)
+      console.log(result);
+      t.update({
+          status: `User ${result.user_id.name} post an image`,
+          media: request(result.image_url)
+      }, (err, result) => {
+          if (err) {
+              res.send(err);
+          }
+          res.send(result)
+      });
+    })
   }
 }
