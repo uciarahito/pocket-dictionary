@@ -3,6 +3,7 @@ require('dotenv').config()
 const translate = require('yandex-translate')(process.env.YANDEX_KEY);
 const helpers = require('../helpers/decode_token')
 const userController = require('./userController')
+const imageUrl = require('../models/imageUrl');
 var fs = require('fs');
 var objLanguage = JSON.parse(fs.readFileSync('./public/datas/language-codes.json', 'utf8'));
 const Translate = require('../models/translate')
@@ -63,15 +64,28 @@ methods.create = (req, res) => {
   var decoded = helpers.decode_token(token)
   var user_id = decoded._id
   translateObj.user_id = user_id
-  Translate.create(translateObj)
-  .then(translate => {
-    // res.send(translate)
-    res.redirect('/dashboard')
+  var obj = {
+    from_lang:translateObj.from_lang,
+    from_text:translateObj.from_text,
+    to_lang:translateObj.to_lang,
+    to_text:translateObj.to_text
+  }
+  imageUrl(obj, (err, result) => {
+    if (err) res.send(err)
+    else {
+      // console.log(result);
+      translateObj.image_url = result
+      // console.log(translateObj);
+      Translate.create(translateObj)
+      .then(translate => {
+        console.log(translate);
+        res.redirect('/dashboard')
+      })
+      .catch(err => {
+        res.send(err)
+      })
+    }
   })
-  .catch(err => {
-    res.send(err)
-  })
-
 }
 
 methods.getByUserId = (req, res) => {

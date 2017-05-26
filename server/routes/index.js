@@ -18,10 +18,9 @@ router.get('/dashboard', userController.auth , translateController.getByUserId);
 router.post('/dashboard', userController.auth, translateController.translate);
 router.get('/save', translateController.create);
 router.get('/api/translate/:user_id', translateController.getByUserId);
-router.delete('/api/translate/:id', translateController.deleteById);
-router.get('/delete/:id', translateController.deleteById);
-router.post('/tweet/:id', twitterController.twitImage);
+router.get('/delete/:id', translateController.deleteById)
 router.get('/share/:id', userController.auth, translateController.share);
+router.get('/tweet/:id', twitterController.twitImage)
 
 // 'login', {error: null}
 

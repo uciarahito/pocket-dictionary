@@ -21,7 +21,8 @@ module.exports = {
       if (err) res.send(err)
       console.log(result);
       t.update({
-          status: `User ${result.user_id.name} post an image`,
+          status: `${result.user_id.name} posted an image...`,
+
           media: request(result.image_url)
       }, (err, result) => {
           if (err) {
