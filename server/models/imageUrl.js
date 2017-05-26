@@ -54,7 +54,7 @@ module.exports = (params, callback) => {
   ];
   var fontIndex = Math.floor(Math.random() * listFont.length);
   var colorIndex = Math.floor(Math.random() * listColor.length);
-  var url = `http://api.img4me.com/?text=${fixedEncodeURIComponent(params.text)}%0A%20%20-%20${fixedEncodeURIComponent(params.name)}&font=${listFont[fontIndex]}&fcolor=${listColor[colorIndex].font}&size=35&bcolor=${listColor[colorIndex].bg}&type=jpg`;
+  var url = `http://api.img4me.com/?text=%20%0A%20%20%23${params.from_lang}%0A%20%20${fixedEncodeURIComponent(params.from_text)}%0A%20%0A%20%20%23${params.to_lang}%0A%20%20${fixedEncodeURIComponent(params.to_text)}%0A%20&font=${listFont[fontIndex]}&fcolor=${listColor[colorIndex].font}&size=35&bcolor=${listColor[colorIndex].bg}&type=jpg`;
   axios.get(url)
   .then(result => {
     callback(null, result.data);

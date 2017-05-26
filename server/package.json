@@ -21,6 +21,7 @@
     "mongoose": "^4.10.2",
     "morgan": "^1.8.2",
     "serve-favicon": "^2.4.3",
+    "twitter-pic": "^0.1.0",
     "yandex-translate": "^2.1.1"
   }
 }
