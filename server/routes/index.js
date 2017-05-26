@@ -12,12 +12,11 @@ router.get('/login', userController.signinPage);
 router.post('/login', userController.signin);
 router.post('/api/translate', translateController.translate);
 router.get('/logout', userController.logout);
-router.get('/dashboard', userController.auth , userController.dashboard);
-router.post('/dashboard', translateController.translate);
-router.post('/translate', translateController.create);
+router.get('/dashboard', userController.auth , translateController.getByUserId);
+router.post('/dashboard', userController.auth, translateController.translate);
+router.post('/save', translateController.create);
 router.get('/api/translate/:user_id', translateController.getByUserId);
-router.delete('/api/translate/:id', translateController.deleteById)
-//router.post('/image', translateController.getImageUrl);
+router.get('/delete/:id', translateController.deleteById)
 
 
 // 'login', {error: null}

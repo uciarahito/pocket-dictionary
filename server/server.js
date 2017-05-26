@@ -17,7 +17,7 @@ app.use(cors())
 mongoose.connect('mongodb://localhost/pocket-dictionary');
 
 // NOTE: set
-app.set('port', process.env.PORT || 3000)
+app.set('port', process.env.PORT || 5000)
 
 app.use(require('morgan')('dev'))
 app.use(bodyParser.urlencoded({
